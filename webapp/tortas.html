@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Tortas | Bethany's Pie Shop</title>
+    <link rel="stylesheet" href="site.css" type="text/css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="./">Bem Vindo!</a></li>
+          <li><a href="tortas.html">Tortas</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <aside>
+        <img src="images/logo.png" alt="Bethany's Pie Shop" />
+      </aside>
+
+      <article>
+        <h1>Tortas</h1>
+
+        <section class="columns-desktop">
+          <div class="pie">
+            <img src="images/apple-pie.png" alt="Torta de Maçã" />
+            <div class="columns">
+              <div class="title">Torta de Maçã</div>
+              <div class="price">R$12.99</div>
+            </div>
+            <p class="desc">A favorita!</p>
+            <button data-order="apple-pie">Fazer pedido</button>
+          </div>
+
+          <div class="pie">
+            <img src="images/cherry-pie.png" alt="Torta de Cereja" />
+            <div class="columns">
+              <div class="title">Torta de Cereja</div>
+              <div class="price">R$15.99</div>
+            </div>
+            <p class="desc">A expetacular!</p>
+            <button data-order="cherry-pie">Fazer pedido</button>
+          </div>
+        </section>
+      </article>
+    </main>
+
+    <footer>
+      <nav>
+        <ul>
+          <li><a href="./">Bem Vindo!</a></li>
+          <li><a href="tortas.html">Tortas</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+  <script>
+    window.addEventListener("DOMContentLoaded", function(e) {
+      const orderButtons = document.querySelectorAll("button[data-order]");
+
+      orderButtons.forEach(function(button) {
+        
+        button.addEventListener("click", function(e) {
+          const button = e.currentTarget;
+          const container = button.parentNode;
+
+          const order = {
+            id: (id = button.getAttribute("data-order")),
+            title: container.querySelector(".title").innerText,
+            price: container.querySelector(".price").innerText,
+            desc: container.querySelector(".desc").innerText
+          };
+
+          localStorage.setItem("order", JSON.stringify(order));
+
+          const url = window.location.href.replace("tortas.html", "pedido.html");
+          window.location.href = url;
+        });
+      });
+    });
+  </script>
+</html>

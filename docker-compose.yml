@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  webapp:
+    image: httpd:latest
+    container_name: webapp
+    hostname: webapp
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+    ports:
+      - "80"
+    volumes:
+      -  ./webapp:/usr/local/apache2/htdocs
+
+
